@@ -1,6 +1,8 @@
 import pygame
 
-def JudgeAccuracy(xs, ys, c, max_error):
+def JudgeAccuracy(points, c, max_error):
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
     total_err = 0
     valid = True
     prct_correct = 0
@@ -60,13 +62,10 @@ def main():
         if len(points) > 1:
             pygame.draw.lines(screen, (255, 0, 0), False, points, 2)
 
-        xs = [p[0] for p in points]
-        ys = [p[1] for p in points]
-
         max_distance = 50
 
-        if len(xs) > 0:
-            valid, prct_correct = JudgeAccuracy(xs, ys, center, max_distance)
+        if len(points) > 0:
+            valid, prct_correct = JudgeAccuracy(points, center, max_distance)
             if valid:
                 result_text = f"Valid Circle! Accuracy: {prct_correct:.2f}%"
             else:
@@ -76,7 +75,6 @@ def main():
             screen.blit(text_surface, (20, 20))
 
         pygame.display.flip()
-
     pygame.quit()
     
 main()
