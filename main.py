@@ -62,8 +62,11 @@ def main():
 
         xs = [p[0] for p in points]
         ys = [p[1] for p in points]
+
+        max_distance = 50
+
         if len(xs) > 0:
-            valid, prct_correct = JudgeAccuracy(xs, ys, center, 10)
+            valid, prct_correct = JudgeAccuracy(xs, ys, center, max_distance)
             if valid:
                 result_text = f"Valid Circle! Accuracy: {prct_correct:.2f}%"
             else:
